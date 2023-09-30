@@ -5,19 +5,18 @@ import { make } from './helpers';
  */
 export default class Tunes {
   /**
-     * @param {{cssClasses: object, settings: object, onTuneToggled: Function, title: "string"}}
+     * @param {{cssClasses: object, settings: object, onTuneToggled: Function}}
      *  cssClasses - CSS class names
      *  settings - Available image tunes
      *  onTuneToggled - Tune toggling callback
      *  title - Title string
      */
   constructor({
-    cssClasses, settings, onTuneToggled, title,
+    cssClasses, settings, onTuneToggled,
   }) {
     this.cssClasses = cssClasses;
     this.onTuneToggled = onTuneToggled;
     this.settings = settings;
-    this.title = title;
     this.buttons = [];
   }
 
@@ -32,9 +31,9 @@ export default class Tunes {
     this.buttons = [];
 
     const tuneNames = {
-      withBorder: 'Chegara bilan',
-      withBackground: 'Orqa fon bilan',
-      stretched: "Rasimni cho'zish",
+      withBorder: ('With border'),
+      withBackground: ('With background'),
+      stretched: ('Stretch image'),
     };
 
     this.settings.forEach((tune) => {
@@ -78,20 +77,9 @@ export default class Tunes {
   tuneClicked(tuneName) {
     const button = this.buttons.find((el) => el.dataset.tune === tuneName);
 
-    if (!button) {
-      return;
-    }
+    button.classList.toggle(this.cssClasses.settingsButtonActive,
+      !button.classList.contains(this.cssClasses.settingsButtonActive));
 
-    const newData = {
-      ...this.data,
-      [tuneName]: !this.data[tuneName],
-    };
-
-    button.classList.toggle(
-      this.cssClasses.settingsButtonActive,
-      newData[tuneName],
-    );
-
-    this.onTuneToggled(newData);
+    this.onTuneToggled(tuneName);
   }
 }
