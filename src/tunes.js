@@ -10,7 +10,8 @@ export default class Tunes {
    *  settings - Available Image tunes
    *  onTuneToggled - Tune toggling callback
    */
-  constructor({ cssClasses, settings, onTuneToggled }) {
+  constructor({ api, cssClasses, settings, onTuneToggled }) {
+    this.api = api,
     this.cssClasses = cssClasses;
     this.onTuneToggled = onTuneToggled;
     this.settings = settings;
@@ -28,9 +29,9 @@ export default class Tunes {
     this.buttons = [];
 
     const tuneNames = {
-      withBorder: 'With border',
-      withBackground: 'With background',
-      stretched: 'Stretch image',
+      withBorder: this.api.i18n.t('With border'),
+      withBackground: this.api.i18n.t('With background'),
+      stretched: this.api.i18n.t('Stretch image'),
     };
 
     this.settings.forEach((tune) => {

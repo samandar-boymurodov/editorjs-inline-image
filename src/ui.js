@@ -64,6 +64,7 @@ export default class Ui {
     });
 
     this.tunes = new Tunes({
+      api: this.api,
       cssClasses: {
         settingsButton: this.api.styles.settingsButton,
         settingsButtonActive: this.api.styles.settingsButtonActive,
