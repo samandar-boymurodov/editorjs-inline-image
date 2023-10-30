@@ -10,7 +10,8 @@ export default class Tunes {
    *  settings - Available Image tunes
    *  onTuneToggled - Tune toggling callback
    */
-  constructor({ cssClasses, settings, onTuneToggled }) {
+  constructor({ api, cssClasses, settings, onTuneToggled }) {
+    this.api = api,
     this.cssClasses = cssClasses;
     this.onTuneToggled = onTuneToggled;
     this.settings = settings;
@@ -27,19 +28,41 @@ export default class Tunes {
     const wrapper = make('div');
     this.buttons = [];
 
+    const tuneNames = {
+      withBorder: this.api.i18n.t('With border'),
+      withBackground: this.api.i18n.t('With background'),
+      stretched: this.api.i18n.t('Stretch image'),
+    };
+
     this.settings.forEach((tune) => {
-      const el = make('div', null, {
-        innerHTML: tune.icon,
+      const textEl = make('div', null, {
+        innerText: tuneNames[tune.name],
+      });
+
+      textEl.classList.add('ce-popover-item__title');
+
+      const el = make('div', [this.cssClasses.settingsButton], {
         onclick: () => this.tuneClicked(tune.name),
       });
 
-      el.classList.add(this.cssClasses.settingsButton);
       el.dataset.tune = tune.name;
-      el.classList.toggle(this.cssClasses.settingsButtonActive, data[tune.name]);
+      el.classList.toggle(
+        this.cssClasses.settingsButtonActive,
+        data[tune.name],
+      );
+
+      const svgWrapperEl = make('div', null, {
+        innerHTML: tune.icon,
+      });
+      el.appendChild(svgWrapperEl);
+      el.appendChild(textEl);
+
+      svgWrapperEl.classList.add('ce-popover-item__icon');
 
       this.buttons.push(el);
       wrapper.appendChild(el);
     });
+
     return wrapper;
   }
 
