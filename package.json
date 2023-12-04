@@ -1,6 +1,6 @@
 {
   "name": "@samandar.boymurodov/editorjs-inline-image",
-  "version": "1.2.44",
+  "version": "1.2.45",
   "keywords": [
     "tool",
     "image",
@@ -46,6 +46,9 @@
     "axios": "0.26.0",
     "intrinsic-scale": "^3.0.4"
   },
+  "files": [
+    "dist/"
+  ],
   "jest": {
     "testEnvironment": "jsdom",
     "setupFilesAfterEnv": [
