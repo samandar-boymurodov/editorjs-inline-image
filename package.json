@@ -1,6 +1,6 @@
 {
   "name": "@samandar.boymurodov/editorjs-inline-image",
-  "version": "1.2.43",
+  "version": "1.2.44",
   "keywords": [
     "tool",
     "image",
@@ -42,6 +42,7 @@
     "webpack-cli": "^4.8.0"
   },
   "dependencies": {
+    "@codexteam/icons": "^0.3.0",
     "axios": "0.26.0",
     "intrinsic-scale": "^3.0.4"
   },

@@ -1,10 +1,8 @@
 import { make, createImageCredits } from './helpers';
 import Tunes from './tunes';
 import ControlPanel from './controlPanel';
-import bgIcon from '../assets/backgroundIcon.svg';
-import borderIcon from '../assets/borderIcon.svg';
-import stretchedIcon from '../assets/toolboxIcon.svg';
 import ModalHandler from './modalHandler';
+import { IconAddBorder, IconStretch, IconAddBackground } from '@codexteam/icons';
 
 /**
  * Class for working with UI:
@@ -42,16 +40,19 @@ export default class Ui {
 
     this.settings = [
       {
-        name: 'withBorder',
-        icon: borderIcon,
+        label: this.api.i18n.t('With border'),
+        name: "withBorder",
+        icon: IconAddBorder,
       },
       {
-        name: 'stretched',
-        icon: stretchedIcon,
+        label: this.api.i18n.t('Stretch image'),
+        name: "stretched",
+        icon: IconStretch,
       },
       {
-        name: 'withBackground',
-        icon: bgIcon,
+        name: "withBackground",
+        label: this.api.i18n.t('With background'),
+        icon: IconAddBackground,
       },
     ];
 
@@ -187,11 +188,7 @@ export default class Ui {
       });
   }
 
-  /**
-   * Makes buttons with tunes
-   *
-   * @returns {HTMLDivElement}
-   */
+
   renderSettings(data) {
     return this.tunes.render(data);
   }
